@@ -1,24 +1,33 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", padding: 16 }}>
+      <View>
+        <Text>
+          Welcome to Expo Router. This is the index page. okay! got it. there
+          something new especial
+        </Text>
+
+        <TextInput
+          placeholder="Enter text here..."
+          style={{ borderWidth: 1, borderColor: "#ccc", padding: 8, marginTop: 16 }}
+        />
+
+        <TouchableOpacity
+         onPress={() => alert("Button pressed!")}
+          style={{
+            backgroundColor: "#007AFF",
+            padding: 12,
+            borderRadius: 8,
+            marginTop: 16,
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ color: "#fff", textAlign: "center", fontWeight: "bold" }}>Submit</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 }
